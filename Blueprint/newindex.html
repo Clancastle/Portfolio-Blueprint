@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Dennis Ungureanu — Portfolio</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="icons/DUI.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,500&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  :root {
+    --ink: #0A0A0A;
+    --paper: #F4F1EA;
+    --paper-2: #EAE5DB;
+    --graphite: #2A2A2A;
+    --steel: #6B6B6B;
+    --accent: #B85C2E;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+  }
+
+  .font-serif-d { font-family: 'Fraunces', serif; }
+  .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(10,10,10,0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10,10,10,0.035) 1px, transparent 1px);
+    background-size: 80px 80px;
+  }
+
+  .sheet-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--steel);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.08s; }
+  .reveal-d2 { transition-delay: 0.16s; }
+  .reveal-d3 { transition-delay: 0.24s; }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee 40s linear infinite;
+    display: inline-flex;
+    white-space: nowrap;
+    will-change: transform;
+  }
+
+  .project-row {
+    border-top: 1px solid var(--ink);
+    transition: background 0.5s cubic-bezier(0.22,1,0.36,1), color 0.5s cubic-bezier(0.22,1,0.36,1);
+  }
+  .project-row:last-child { border-bottom: 1px solid var(--ink); }
+  .project-row:hover { background: var(--ink); color: var(--paper); }
+  .project-row:hover .project-meta { color: rgba(244,241,234,0.65); }
+  .project-row:hover .project-arrow { transform: translateX(10px); }
+  .project-arrow { transition: transform 0.5s cubic-bezier(0.22,1,0.36,1); display: inline-block; }
+
+  .skill-bar {
+    position: relative;
+    height: 1px;
+    background: rgba(10,10,10,0.15);
+  }
+  .skill-bar .fill {
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    background: var(--ink);
+    width: 0;
+    transition: width 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .skill-bar.in .fill { width: var(--w); }
+  .skill-bar .dot {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: 8px; height: 8px;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    border-radius: 50%;
+    transition: left 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .skill-bar.in .dot { left: var(--w); }
+
+  .corner {
+    position: absolute;
+    width: 14px; height: 14px;
+    pointer-events: none;
+  }
+  .corner::before, .corner::after {
+    content: ''; position: absolute; background: var(--ink);
+  }
+  .corner-tl { top: 14px; left: 14px; }
+  .corner-tl::before { top: 0; left: 0; width: 14px; height: 1px; }
+  .corner-tl::after  { top: 0; left: 0; width: 1px; height: 14px; }
+  .corner-tr { top: 14px; right: 14px; }
+  .corner-tr::before { top: 0; right: 0; width: 14px; height: 1px; }
+  .corner-tr::after  { top: 0; right: 0; width: 1px; height: 14px; }
+  .corner-bl { bottom: 14px; left: 14px; }
+  .corner-bl::before { bottom: 0; left: 0; width: 14px; height: 1px; }
+  .corner-bl::after  { bottom: 0; left: 0; width: 1px; height: 14px; }
+  .corner-br { bottom: 14px; right: 14px; }
+  .corner-br::before { bottom: 0; right: 0; width: 14px; height: 1px; }
+  .corner-br::after  { bottom: 0; right: 0; width: 1px; height: 14px; }
+
+  .hero-img { filter: grayscale(1) contrast(1.08); }
+
+  .slide-panel {
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 760px;
+    background: var(--paper);
+    transform: translateX(100%);
+    transition: transform 0.7s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 100;
+    overflow-y: auto;
+  }
+  .slide-panel.open { transform: translateX(0); }
+
+  .backdrop {
+    position: fixed; inset: 0;
+    background: rgba(10,10,10,0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 99;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .backdrop.open { opacity: 1; pointer-events: auto; }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: var(--ink);
+    color: var(--paper);
+    transform: translateY(-100%);
+    transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+    z-index: 90;
+  }
+  .mobile-menu.open { transform: translateY(0); }
+
+  .form-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(244,241,234,0.3);
+    padding: 12px 0;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: var(--paper);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-input::placeholder { color: rgba(244,241,234,0.35); }
+  .form-input:focus { border-color: var(--paper); }
+
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  #gearCanvas { width: 100%; height: 100%; display: block; }
+
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--ink);
+    z-index: 200;
+    width: 0;
+    transition: width 0.1s linear;
+  }
+
+  .side-nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .side-nav-item {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(10,10,10,0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+  .side-nav-item::after {
+    content: attr(data-label);
+    position: absolute;
+    right: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+  .side-nav-item:hover::after { opacity: 1; }
+  .side-nav-item.active {
+    background: var(--ink);
+    transform: scale(1.5);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.35; }
+  }
+  .pulse { animation: pulse 2s ease-in-out infinite; }
+
+  @keyframes scrollDown {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(6px); opacity: 1; }
+  }
+  .scroll-indicator { animation: scrollDown 2.4s ease-in-out infinite; }
+
+  .big-num {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+  }
+
+  .img-frame { overflow: hidden; position: relative; }
+  .img-frame img { transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+  .img-frame:hover img { transform: scale(1.04); }
+
+  .spec-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(10,10,10,0.1);
+    font-size: 13px;
+  }
+
+  .ulink { position: relative; display: inline-block; }
+  .ulink::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0;
+    width: 100%; height: 1px;
+    background: currentColor;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+  }
+  .ulink:hover::after { transform-origin: left; transform: scaleX(1); }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--ink);
+    transition: width 0.4s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  .dim-line {
+    position: absolute;
+    background: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+</head>
+<body class="grid-bg">
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <div class="side-nav hidden lg:flex" id="sideNav">
+    <div class="side-nav-item active" data-target="hero" data-label="Hero"></div>
+    <div class="side-nav-item" data-target="about" data-label="About"></div>
+    <div class="side-nav-item" data-target="work" data-label="Work"></div>
+    <div class="side-nav-item" data-target="skills" data-label="Skills"></div>
+    <div class="side-nav-item" data-target="contact" data-label="Contact"></div>
+  </div>
+
+  <!-- Top nav -->
+  <header class="fixed top-0 left-0 right-0 z-[80] px-6 md:px-10 py-5 flex items-center justify-between" style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); background: rgba(244,241,234,0.75); border-bottom: 1px solid rgba(10,10,10,0.08);">
+    <a href="#hero" class="flex items-center gap-3 group">
+      <div class="font-serif-d text-xl font-medium tracking-tight">DU<span class="text-[var(--accent)]">.</span></div>
+      <div class="hidden md:block w-px h-4 bg-current opacity-30"></div>
+      <div class="hidden md:block sheet-label">Dennis Ungureanu / Portfolio 2026</div>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-wider">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#work" class="nav-link">Work</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <button class="md:hidden flex flex-col gap-1.5 z-[95]" id="menuBtn" aria-label="Open menu">
+      <span class="w-6 h-px bg-current"></span>
+      <span class="w-6 h-px bg-current"></span>
+    </button>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="p-8 h-full flex flex-col justify-between">
+      <div class="flex justify-between items-center">
+        <div class="font-serif-d text-xl">DU<span style="color:var(--accent)">.</span></div>
+        <button id="closeMenu" class="text-3xl leading-none" aria-label="Close menu">×</button>
+      </div>
+      <nav class="flex flex-col gap-4">
+        <a href="#about" class="font-serif-d text-5xl md:text-6xl font-light mobile-link">About<span class="text-base align-top opacity-40 ml-2">01</span></a>
+        <a href="#work" class="font-serif-d text-5xl md:text-6xl font-light mobile-link">Work<span class="text-base align-top opacity-40 ml-2">02</span></a>
+        <a href="#skills" class="font-serif-d text-5xl md:text-6xl font-light mobile-link">Skills<span class="text-base align-top opacity-40 ml-2">03</span></a>
+        <a href="#contact" class="font-serif-d text-5xl md:text-6xl font-light mobile-link">Contact<span class="text-base align-top opacity-40 ml-2">04</span></a>
+      </nav>
+      <div class="sheet-label" style="color: rgba(244,241,234,0.5)">
+        Minneapolis, MN — 2026
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen pt-24 pb-12 px-6 md:px-10">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+
+    <div class="flex justify-between items-start mb-10 md:mb-14">
+      <div class="sheet-label">SHEET 01 / HERO / REV.A</div>
+      <div class="sheet-label hidden md:block">45.04308° N, -92.98180° W</div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-4 md:gap-6 items-start">
+      <div class="col-span-12 lg:col-span-7">
+        <div class="sheet-label mb-6 reveal in">A portfolio by</div>
+        <h1 class="font-serif-d font-light leading-[0.85] tracking-tight reveal in reveal-d1" style="font-size: clamp(56px, 13vw, 200px);">
+          Dennis<br>
+          <span class="italic font-normal">Ungureanu<span class="text-[var(--accent)]">.</span></span>
+        </h1>
+        <div class="mt-8 md:mt-12 max-w-md reveal in reveal-d2">
+          <p class="text-base md:text-lg leading-relaxed">
+            Freshman mechanical engineering student at <span class="italic">Century College</span>.
+            Continuously designing, prototyping, and creating as I get better at building more and more.
+          </p>
+          <div class="mt-6 flex items-center gap-3 sheet-label">
+            <span class="w-1.5 h-1.5 rounded-full pulse" style="background: #2A8C5A"></span>
+            <span>NOW — Robot Arm, Personal Project</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 lg:col-span-5 mt-8 lg:mt-0 reveal in reveal-d2">
+        <div class="img-frame aspect-[4/5] relative" style="border: 1px solid var(--ink);">
+          <img src="https://picsum.photos/seed/mechanical-workshop-22/800/1000.jpg" alt="Workshop" class="hero-img w-full h-full object-cover">
+          <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, transparent 55%, rgba(10,10,10,0.55));"></div>
+          <div class="absolute bottom-4 left-4 right-4 flex justify-between items-end text-white">
+            <div class="font-mono text-[10px] uppercase tracking-wider">
+              <div>FIG 01.1</div>
+              <div class="opacity-70">Workshop / 2024</div>
+            </div>
+            <div class="font-mono text-[10px] uppercase tracking-wider opacity-80">
+              SCALE 1:1
+            </div>
+          </div>
+          <!-- dimension marker -->
+          <div class="absolute top-0 right-0 translate-x-full pr-2 hidden md:flex flex-col items-start" style="height: 100%;">
+            <div class="w-px bg-current opacity-30 h-full"></div>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-4 font-mono text-[10px] uppercase tracking-wider">
+          <div>
+            <div class="opacity-50 mb-1">Discipline</div>
+            <div>Mechanical & Electrical Eng.</div>
+          </div>
+          <div>
+            <div class="opacity-50 mb-1">Year</div>
+            <div>1 of 4</div>
+          </div>
+          <div>
+            <div class="opacity-50 mb-1">Focus</div>
+            <div>Design · Robotics</div>
+          </div>
+          <div>
+            <div class="opacity-50 mb-1">Status</div>
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full pulse" style="background: #2A8C5A"></span>
+              Open to intern
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-6 md:left-10 right-6 md:right-10 flex justify-between items-end">
+      <div class="flex items-center gap-3 sheet-label">
+        <div class="scroll-indicator">
+          <svg width="14" height="20" viewBox="0 0 14 20" fill="none">
+            <rect x="0.5" y="0.5" width="13" height="19" rx="6.5" stroke="currentColor"/>
+            <line x1="7" y1="5" x2="7" y2="9" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </div>
+        Scroll to read
+      </div>
+      <div class="sheet-label hidden md:block">© 2026 / DRAWINGS PROTOTYPE ONLY</div>
+    </div>
+  </section>
+
+  <!-- Marquee -->
+  <section class="py-5 border-y border-current overflow-hidden" style="background: var(--paper-2);">
+    <!--<div class="marquee-track font-serif-d italic text-3xl md:text-5xl font-light">
+      <span class="px-8">Precision</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Prototype</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Iterate</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Manufacture</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Precision</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Prototype</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Iterate</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Manufacture</span><span class="px-8 opacity-30">✦</span>
+    </div>-->
+        <div class="marquee-track font-serif-d italic text-3xl md:text-5xl font-light">
+      <span class="px-8">Idea</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Design</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Prototype</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Build</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Idea</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Design</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Prototype</span><span class="px-8 opacity-30">✦</span>
+      <span class="px-8">Build</span><span class="px-8 opacity-30">✦</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="relative px-6 md:px-10 py-20 md:py-32">
+    <div class="grid grid-cols-12 gap-4 md:gap-6">
+      <div class="col-span-12 md:col-span-3 reveal">
+        <div class="sheet-label mb-3">02 / About</div>
+        <div class="font-serif-d text-4xl md:text-5xl font-light leading-[0.95]">Biographical<br><span class="italic">data.</span></div>
+      </div>
+
+      <div class="col-span-12 md:col-span-6 md:col-start-5 reveal reveal-d1">
+        <p class="font-serif-d text-2xl md:text-3xl leading-snug mb-8 font-light">
+          I'm a mechanical engineering student driven by the question:
+          <span class="italic">how can I learn as much as I can in the span of my life?</span>
+        </p>
+        <div class="grid grid-cols-1 gap-5 text-sm leading-relaxed text-[var(--graphite)]">
+          <p>
+            I grew up fixing my bikes that kept on breaking, along with trying to smash apart
+            anything else that I saw. By the time I reached high school I was working
+            construction on the side, further enforcing my life theme of breaking things
+            and trying to build them back. While in this time in my life, I got more into
+            sales and built small snow plowing business—however unsuccessful it was.
+          </p>
+          <p>
+            After High School, I did a few sales jobs for a period of time, and I realized
+            that although I loved talking and getting to know people, it wasn't as mentally
+            stimulating as I had always wanted my job to be. I wanted more stimulation, more
+            challenge, so I started studying engineering, and haven't looked back since.
+          </p>
+
+          <p>
+            Now in my freshman year, I split time between foundational coursework and the
+            makerspace, where I'm learning about Electronics, AutoCAD, and the craft of 3D
+            printing. I'm especially drawn to cyberpunk related themes, as when I read books,
+            I start to think of the possibilty of such a creation existing, which then I try to
+            recreate the design, figure the in's and out's of it, and make it work.
+          </p>
+          <p>
+            Outside of engineering, I play guitar, read a variety of genres, as well as
+            collect old engineering books. Health is also a huge deal for me, as the healthier
+            I am, the greater my creativity and memory retention rate, so on the side, I also
+            enjoy going to parks, as well as work out occasionally.ii
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-4 md:gap-6 mt-20 md:mt-32">
+      <div class="col-span-12 md:col-span-7 reveal">
+        <div class="sheet-label mb-8">Measured outcomes</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div>
+            <div class="big-num text-5xl md:text-7xl" data-count="4">0</div>
+            <div class="sheet-label mt-3">Projects shipped</div>
+          </div>
+          <div>
+            <div class="big-num text-5xl md:text-7xl" data-count="5">0</div>
+            <div class="sheet-label mt-3">CAD hours logged</div>
+          </div>
+          <div>
+            <div class="big-num text-5xl md:text-7xl" data-count="3.46" data-decimal="2">0</div>
+            <div class="sheet-label mt-3">GPA / 4.0</div>
+          </div>
+          <div>
+            <div class="big-num text-5xl md:text-7xl" data-count="3">0</div>
+            <div class="sheet-label mt-3">Tools in rotation</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 md:col-span-5 reveal reveal-d2">
+        <div class="relative aspect-square border border-current overflow-hidden" style="background: var(--paper-2);">
+          <div id="gearCanvas"></div>
+          <div class="absolute top-3 left-3 sheet-label">FIG 02.1 / GEAR ASSEMBLY</div>
+          <div class="absolute bottom-3 right-3 sheet-label">DRAG TO ROTATE</div>
+          <div class="corner corner-tl"></div>
+          <div class="corner corner-tr"></div>
+          <div class="corner corner-bl"></div>
+          <div class="corner corner-br"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-4 md:gap-6 mt-24 md:mt-32">
+      <div class="col-span-12 md:col-span-10 md:col-start-2 reveal">
+        <div class="sheet-label mb-6">— Personal principle</div>
+        <blockquote class="font-serif-d text-3xl md:text-5xl leading-[1.1] font-light">
+          <span class="opacity-30">"</span>Every dimension is a decision.
+          <span class="italic">Tolerance is where engineering becomes craft.</span><span class="opacity-30">"</span>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="relative px-6 md:px-10 py-20 md:py-32" style="background: var(--paper-2);">
+    <div class="grid grid-cols-12 gap-4 md:gap-6 mb-16 md:mb-20">
+      <div class="col-span-12 md:col-span-3 reveal">
+        <div class="sheet-label mb-3">03 / Selected work</div>
+      </div>
+      <div class="col-span-12 md:col-span-9 reveal reveal-d1">
+        <h2 class="font-serif-d font-light leading-[0.9] tracking-tight" style="font-size: clamp(48px, 8vw, 120px);">
+          Four<br>
+          <span class="italic">builds.</span>
+        </h2>
+        <p class="mt-8 max-w-xl text-sm leading-relaxed text-[var(--graphite)]">
+          A selection of projects from coursework, club work, and personal experimentation.
+          Each one taught me something I couldn't have learned from a textbook. Click any row
+          to read the case study.
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <article class="project-row group cursor-pointer py-7 md:py-9" data-project="1">
+        <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
+          <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">01</span>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Pneumatic Engine</h3>
+            <div class="project-meta sheet-label mt-2">ME 70 · Spring 2025 · SolidWorks · Lathe · Mill · ANSYS</div>
+          </div>
+          <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
+        </div>
+      </article>
+
+      <article class="project-row group cursor-pointer py-7 md:py-9" data-project="2">
+        <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
+          <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">02</span>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Cycling Power Meter</h3>
+            <div class="project-meta sheet-label mt-2">Personal · Ongoing · Arduino · Strain Gauges · PCB · FDM</div>
+          </div>
+          <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
+        </div>
+      </article>
+
+      <article class="project-row group cursor-pointer py-7 md:py-9" data-project="3">
+        <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
+          <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">03</span>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Soft Robotic Gripper</h3>
+            <div class="project-meta sheet-label mt-2">Robotics Club · 2024 · Fusion 360 · Silicone Casting · Pneumatics</div>
+          </div>
+          <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
+        </div>
+      </article>
+
+      <article class="project-row group cursor-pointer py-7 md:py-9" data-project="4">
+        <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
+          <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">04</span>
+          <div class="flex-1 min-w-0">
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Wind Tunnel Balance</h3>
+            <div class="project-meta sheet-label mt-2">ME 80 · 2025 · Machining · DAQ · MATLAB · Calibration</div>
+          </div>
+          <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="relative px-6 md:px-10 py-20 md:py-32">
+    <div class="grid grid-cols-12 gap-4 md:gap-6 mb-16 md:mb-20">
+      <div class="col-span-12 md:col-span-3 reveal">
+        <div class="sheet-label mb-3">04 / Capabilities</div>
+      </div>
+      <div class="col-span-12 md:col-span-9 reveal reveal-d1">
+        <h2 class="font-serif-d font-light leading-[0.9] tracking-tight" style="font-size: clamp(48px, 8vw, 120px);">
+          The<br>
+          <span class="italic">toolkit.</span>
+        </h2>
+        <p class="mt-8 max-w-xl text-sm leading-relaxed text-[var(--graphite)]">
+          A working snapshot of where my skills sit today. Every category is something I've
+          used on a real project — no resume padding.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-x-4 gap-y-12 md:gap-x-6 md:gap-y-16">
+      <div class="col-span-12 md:col-span-6 reveal">
+        <div class="sheet-label mb-6 flex items-center gap-3">
+          <span>CAD / Modeling</span>
+          <span class="flex-1 h-px bg-current opacity-20"></span>
+          <span class="opacity-50">A</span>
+        </div>
+        <div class="space-y-7">
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>SolidWorks</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
+            <div class="skill-bar" style="--w: 85%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>Fusion 360</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
+            <div class="skill-bar" style="--w: 80%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>AutoCAD</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>Onshape</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 md:col-span-6 reveal reveal-d1">
+        <div class="sheet-label mb-6 flex items-center gap-3">
+          <span>Simulation / Analysis</span>
+          <span class="flex-1 h-px bg-current opacity-20"></span>
+          <span class="opacity-50">B</span>
+        </div>
+        <div class="space-y-7">
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>ANSYS Mechanical</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>SolidWorks Sim</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>MATLAB</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 70%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>Python (NumPy/SciPy)</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 md:col-span-6 reveal">
+        <div class="sheet-label mb-6 flex items-center gap-3">
+          <span>Manufacturing</span>
+          <span class="flex-1 h-px bg-current opacity-20"></span>
+          <span class="opacity-50">C</span>
+        </div>
+        <div class="space-y-7">
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>FDM 3D Printing</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
+            <div class="skill-bar" style="--w: 90%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>SLA Printing</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>Manual Machining</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>Laser Cutting</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
+            <div class="skill-bar" style="--w: 85%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-span-12 md:col-span-6 reveal reveal-d1">
+        <div class="sheet-label mb-6 flex items-center gap-3">
+          <span>Programming / Electronics</span>
+          <span class="flex-1 h-px bg-current opacity-20"></span>
+          <span class="opacity-50">D</span>
+        </div>
+        <div class="space-y-7">
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>C / C++ (Arduino)</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>Python</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>Embedded / Soldering</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+            <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2 text-sm"><span>HTML / CSS / JS</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+            <div class="skill-bar" style="--w: 40%"><div class="fill"></div><div class="dot"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-20 md:mt-24 reveal">
+      <div class="sheet-label mb-5">Also exploring</div>
+      <div class="flex flex-wrap gap-2">
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">ROS</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">KiCad</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Blender</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Grasshopper</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">CFD</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Topology Optimization</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Sustainable Design</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Soft Robotics</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">DFAM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="relative px-6 md:px-10 py-20 md:py-32" style="background: var(--ink); color: var(--paper);">
+    <div class="grid grid-cols-12 gap-4 md:gap-6 mb-16 md:mb-20">
+      <div class="col-span-12 md:col-span-3 reveal">
+        <div class="sheet-label mb-3" style="color: rgba(244,241,234,0.5)">05 / Contact</div>
+      </div>
+      <div class="col-span-12 md:col-span-9 reveal reveal-d1">
+        <h2 class="font-serif-d font-light leading-[0.9] tracking-tight" style="font-size: clamp(56px, 10vw, 160px);">
+          Let's build<br>
+          <span class="italic">something<span style="color: var(--accent)">.</span></span>
+        </h2>
+        <p class="mt-8 max-w-xl text-sm leading-relaxed" style="color: rgba(244,241,234,0.7)">
+          Looking for an intern, a research assistant, or a collaborator on a project?
+          I'm currently open to summer 2026 opportunities and student-team work.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-12 gap-4 md:gap-6 mt-8 md:mt-12">
+      <div class="col-span-12 md:col-span-5 reveal">
+        <div class="sheet-label mb-6" style="color: rgba(244,241,234,0.5)">Direct</div>
+        <div class="space-y-7">
+          <a href="mailto:elias.marsh@stanford.edu" class="block group">
+            <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">Email</div>
+            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">elias.marsh@stanford.edu</div>
+          </a>
+          <a href="#" class="block">
+            <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">LinkedIn</div>
+            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">/in/elias-marsh</div>
+          </a>
+          <a href="#" class="block">
+            <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">GitHub</div>
+            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">@elias-marsh</div>
+          </a>
+          <a href="#" class="block">
+            <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">Newsletter</div>
+            <div class="font-serif-d text-2xl md:text-3xl ulink font-light italic">The Tolerance</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-span-12 md:col-span-6 md:col-start-7 reveal reveal-d1">
+        <div class="sheet-label mb-6" style="color: rgba(244,241,234,0.5)">Or leave a note</div>
+        <form id="contactForm" class="space-y-7">
+          <div>
+            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">Your name</label>
+            <input type="text" class="form-input" placeholder="Jane Engineer" required>
+          </div>
+          <div>
+            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">Email</label>
+            <input type="email" class="form-input" placeholder="jane@org.com" required>
+          </div>
+          <div>
+            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">Message</label>
+            <textarea rows="3" class="form-input" placeholder="What are you working on?" required></textarea>
+          </div>
+          <button type="submit" class="flex items-center gap-3 font-mono text-xs uppercase tracking-wider border-b pb-2 hover:gap-5 transition-all" style="border-color: var(--paper);">
+            Send message <span>→</span>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <footer class="mt-24 md:mt-32 pt-8 border-t" style="border-color: rgba(244,241,234,0.2);">
+      <div class="grid grid-cols-12 gap-4 text-xs font-mono uppercase tracking-wider" style="color: rgba(244,241,234,0.5)">
+        <div class="col-span-6 md:col-span-3">© 2025 Elias Marsh</div>
+        <div class="col-span-6 md:col-span-3">Stanford, CA</div>
+        <div class="col-span-6 md:col-span-3">Designed & built locally</div>
+        <div class="col-span-6 md:col-span-3 md:text-right">v1.0 / Sheet 05 of 05</div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- Project slide-over -->
+  <div class="backdrop" id="backdrop"></div>
+  <div class="slide-panel" id="slidePanel">
+    <div class="p-6 md:p-12">
+      <div class="flex justify-between items-center mb-10 md:mb-14">
+        <div class="sheet-label" id="panelNum">Project 01</div>
+        <button id="closePanel" class="font-mono text-3xl leading-none hover:rotate-90 transition-transform duration-500" aria-label="Close">×</button>
+      </div>
+      <div id="panelContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // Reveal observer
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .skill-bar').forEach(el => revealObs.observe(el));
+
+    // Counters
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          const el = e.target;
+          const target = parseFloat(el.dataset.count);
+          const dec = parseInt(el.dataset.decimal || '0');
+          const dur = 1800;
+          const start = performance.now();
+          function step(t) {
+            const p = Math.min((t - start) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const v = target * eased;
+            el.textContent = dec ? v.toFixed(dec) : Math.floor(v);
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-count]').forEach(el => counterObs.observe(el));
+
+    // Progress + side nav
+    const progressBar = document.getElementById('progressBar');
+    const sectionIds = ['hero', 'about', 'work', 'skills', 'contact'];
+    const sideItems = document.querySelectorAll('.side-nav-item');
+
+    function onScroll() {
+      const sh = document.body.scrollHeight - window.innerHeight;
+      progressBar.style.width = (window.scrollY / sh * 100) + '%';
+      const mid = window.scrollY + window.innerHeight / 2;
+      let active = sectionIds[0];
+      sectionIds.forEach(id => {
+        const s = document.getElementById(id);
+        if (s && s.offsetTop <= mid) active = id;
+      });
+      sideItems.forEach(i => i.classList.toggle('active', i.dataset.target === active));
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    sideItems.forEach(i => {
+      i.addEventListener('click', () => {
+        document.getElementById(i.dataset.target).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+    closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    document.querySelectorAll('.mobile-link').forEach(a =>
+      a.addEventListener('click', () => mobileMenu.classList.remove('open'))
+    );
+
+    // Projects data
+    const projects = {
+      1: {
+        num: '01',
+        title: 'Pneumatic Engine',
+        date: 'Spring 2025',
+        course: 'ME 70 — Mechanical Engineering Design',
+        tools: ['SolidWorks', 'Manual Lathe', 'Bridgeport Mill', 'ANSYS Static Structural', 'Telescope Gauges'],
+        image: 'https://picsum.photos/seed/pneumatic-engine-v2/1200/800.jpg',
+        summary: 'A single-cylinder pneumatic engine machined from aluminum and steel, capable of 820 RPM on 60 PSI compressed air.',
+        body: [
+          'Designed and manufactured over six weeks as the capstone for ME 70. The engine uses a slide valve driven by a brass cam to time air intake and exhaust, with a flywheel turned on the manual lathe to smooth out the power stroke.',
+          'I handled all CAD modeling in SolidWorks, ran a static structural analysis on the crankshaft to verify a 4× safety factor at peak torque, and machined every component except the fasteners. Tolerances on the cylinder bore were held to ±0.001" using a telescope gauge and micrometer.',
+          'The engine ran successfully on first test, achieving 820 RPM sustained. Lessons learned: a tighter piston-to-cylinder clearance would have boosted efficiency, and a more elaborate port geometry could improve volumetric efficiency.'
+        ],
+        specs: [
+          ['Displacement', '12.5 cc'],
+          ['Peak speed', '820 RPM @ 60 PSI'],
+          ['Material', '6061-T6 / 1018 steel'],
+          ['Weight', '640 g'],
+          ['Machining time', '38 hrs'],
+          ['Safety factor', '4.0× at peak torque']
+        ]
+      },
+      2: {
+        num: '02',
+        title: 'Cycling Power Meter',
+        date: 'Ongoing — Personal',
+        course: 'Independent Project',
+        tools: ['Arduino Nano', 'Strain Gauges', 'Eagle PCB', 'Prusa MK4', 'ADS1256 ADC'],
+        image: 'https://picsum.photos/seed/cycling-power-meter-v2/1200/800.jpg',
+        summary: 'A low-cost crank-based cycling power meter using strain gauges and a custom PCB, targeting ±2% accuracy at an $80 BOM.',
+        body: [
+          'Commercial power meters cost $400–$1,200. I wanted to see how close I could get to the same measurement at a fraction of the cost, using hobbyist components and a 3D-printed housing.',
+          'The system uses a full Wheatstone bridge of 350Ω strain gauges bonded to the left crank arm, sampled at 200 Hz by an ADS1256 24-bit ADC and processed by an Arduino Nano. A BLE module transmits power, cadence, and torque efficiency to a head unit.',
+          'Currently calibrating against a static known-weight rig. Initial results show ±3.5% accuracy, with the dominant error source being temperature drift. Next steps include adding a thermistor for compensation and a PCB revision to reduce noise.'
+        ],
+        specs: [
+          ['Sample rate', '200 Hz'],
+          ['ADC', '24-bit ADS1256'],
+          ['Battery life', '~22 hrs'],
+          ['Current accuracy', '±3.5%'],
+          ['Target accuracy', '±2.0%'],
+          ['BOM cost', '$83.40']
+        ]
+      },
+      3: {
+        num: '03',
+        title: 'Soft Robotic Gripper',
+        date: 'Winter 2024–25',
+        course: 'Stanford Robotics Club',
+        tools: ['Fusion 360', 'Smooth-On Ecoflex 00-50', 'Pneumatics', 'Arduino', 'PLA Molds'],
+        image: 'https://picsum.photos/seed/soft-robotic-gripper-v2/1200/800.jpg',
+        summary: 'A three-fingered pneumatic soft gripper capable of picking up fragile and irregularly shaped objects, cast entirely in silicone.',
+        body: [
+          'Designed for a club challenge to pick up a raw egg without breaking it. The gripper uses fiber-reinforced pneumatic chambers that bend when pressurized, conforming to the shape of whatever they grasp.',
+          'I designed the molds in Fusion 360, printed them in PLA, and cast the fingers in Ecoflex 00-50 with embedded helical Kevlar thread as reinforcement to prevent radial ballooning. The full gripper assembles in under two minutes and runs off a small 12V compressor.',
+          'Successfully picked up an egg, a screwdriver, a tennis ball, and a crumpled piece of paper. The team is now exploring closed-loop pressure control to allow gentler grasping of more fragile items.'
+        ],
+        specs: [
+          ['Fingers', '3'],
+          ['Material', 'Ecoflex 00-50'],
+          ['Operating pressure', '12 PSI'],
+          ['Payload', 'up to 400 g'],
+          ['Cycle time', '~1.2 s'],
+          ['Reinforcement', 'Helical Kevlar thread']
+        ]
+      },
+      4: {
+        num: '04',
+        title: 'Wind Tunnel Balance',
+        date: 'Spring 2025',
+        course: 'ME 80 — Experimental Mechanics',
+        tools: ['Bridgeport Mill', 'NI DAQ', 'MATLAB', 'Strain Gauges', 'Precision Weights'],
+        image: 'https://picsum.photos/seed/wind-tunnel-balance-v2/1200/800.jpg',
+        summary: 'A custom three-component force balance for a low-speed wind tunnel, capable of measuring lift, drag, and pitching moment simultaneously.',
+        body: [
+          'For our ME 80 final project, my team of three was tasked with measuring aerodynamic forces on an airfoil at varying angles of attack. The department\'s existing balance had broken strain gauges and a calibration that no one trusted.',
+          'I led the mechanical design: a sting-mounted balance using two pairs of strain gauges in bending to resolve normal force and axial force, with a moment arm to compute pitching moment. The flexural elements were machined from 7075 aluminum and designed for a 5 lbf full-scale load.',
+          'After machining, I built a calibration rig using precision weights and a protractor, taking 36 data points across all three axes. MATLAB regression showed linear behavior with R² > 0.997 on all channels. The balance is now in use by the department for undergraduate labs.'
+        ],
+        specs: [
+          ['Channels', '3 (Lift, Drag, Pitch)'],
+          ['Full-scale load', '5 lbf'],
+          ['Accuracy', '±0.5% FS'],
+          ['Calibration', '36-point linear'],
+          ['Material', '7075-T6 Aluminum'],
+          ['R² (all channels)', '> 0.997']
+        ]
+      }
+    };
+
+    const slidePanel = document.getElementById('slidePanel');
+    const backdrop = document.getElementById('backdrop');
+    const panelContent = document.getElementById('panelContent');
+    const panelNum = document.getElementById('panelNum');
+
+    document.querySelectorAll('.project-row').forEach(row => {
+      row.addEventListener('click', () => {
+        const p = projects[row.dataset.project];
+        panelNum.textContent = `Project ${p.num} / Sheet 03.${p.num}`;
+        panelContent.innerHTML = `
+          <div class="mb-8">
+            <div class="sheet-label mb-3">${p.course}</div>
+            <h2 class="font-serif-d text-4xl md:text-6xl font-light leading-[0.95] mb-3">${p.title}</h2>
+            <div class="sheet-label">${p.date}</div>
+          </div>
+          <div class="img-frame aspect-[3/2] mb-8 border border-current">
+            <img src="${p.image}" alt="" class="hero-img w-full h-full object-cover">
+          </div>
+          <p class="font-serif-d text-xl md:text-2xl leading-snug mb-8 italic font-light">${p.summary}</p>
+          ${p.body.map(para => `<p class="text-sm leading-relaxed mb-4 text-[var(--graphite)]">${para}</p>`).join('')}
+          <div class="mt-12">
+            <div class="sheet-label mb-4 flex items-center gap-3">
+              <span>Specifications</span>
+              <span class="flex-1 h-px bg-current opacity-20"></span>
+            </div>
+            ${p.specs.map(([k,v]) => `<div class="spec-row"><div class="font-mono text-xs uppercase opacity-50">${k}</div><div>${v}</div></div>`).join('')}
+          </div>
+          <div class="mt-10">
+            <div class="sheet-label mb-4 flex items-center gap-3">
+              <span>Tools & Methods</span>
+              <span class="flex-1 h-px bg-current opacity-20"></span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${p.tools.map(t => `<span class="px-3 py-1.5 border border-current rounded-full text-xs font-mono">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="mt-12 pt-6 border-t border-current/20 sheet-label">END OF SHEET 03.${p.num}</div>
+        `;
+        slidePanel.classList.add('open');
+        backdrop.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    function closePanel() {
+      slidePanel.classList.remove('open');
+      backdrop.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('closePanel').addEventListener('click', closePanel);
+    backdrop.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
+
+    // Contact form
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const orig = btn.innerHTML;
+      btn.innerHTML = 'Sent ✓ — I\'ll reply within 48 hrs';
+      btn.style.borderColor = 'var(--accent)';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.borderColor = ''; e.target.reset(); }, 3000);
+    });
+  </script>
+
+  <!-- Three.js gear assembly -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const container = document.getElementById('gearCanvas');
+    if (container) {
+      const scene = new THREE.Scene();
+      scene.background = null;
+
+      const w0 = Math.max(1, container.clientWidth);
+      const h0 = Math.max(1, container.clientHeight);
+      const camera = new THREE.PerspectiveCamera(38, w0/h0, 0.1, 100);
+      camera.position.set(0.5, 4.2, 7.5);
+      camera.lookAt(0, 0, 0);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(w0, h0);
+      // Capped lower than device max - cuts GPU load on high-DPI screens with no visible quality loss at this size
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      container.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.enableZoom = false;
+      controls.enablePan = false;
+      controls.autoRotate = true;
+      controls.autoRotateSpeed = 1.0;
+      controls.minPolarAngle = Math.PI * 0.25;
+      controls.maxPolarAngle = Math.PI * 0.55;
+
+      // Lights
+      scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+      const key = new THREE.DirectionalLight(0xffffff, 1.3);
+      key.position.set(4, 6, 5);
+      scene.add(key);
+      const fill = new THREE.DirectionalLight(0xffffff, 0.4);
+      fill.position.set(-4, 2, -3);
+      scene.add(fill);
+
+      // Gear shape generator
+      function makeGearShape(teeth, outerR, innerR, holeR) {
+        const shape = new THREE.Shape();
+        const total = teeth * 4;
+        for (let i = 0; i < total; i++) {
+          const seg = i % 4;
+          const r = (seg < 2) ? outerR : innerR;
+          const a = (i / total) * Math.PI * 2;
+          const x = Math.cos(a) * r;
+          const y = Math.sin(a) * r;
+          if (i === 0) shape.moveTo(x, y);
+          else shape.lineTo(x, y);
+        }
+        shape.closePath();
+        const hole = new THREE.Path();
+        hole.absarc(0, 0, holeR, 0, Math.PI * 2, true);
+        shape.holes.push(hole);
+        return shape;
+      }
+
+      function makeGear(teeth, outerR, innerR, holeR, depth) {
+        const shape = makeGearShape(teeth, outerR, innerR, holeR);
+        const geo = new THREE.ExtrudeGeometry(shape, {
+          depth, bevelEnabled: true, bevelThickness: 0.05, bevelSize: 0.05,
+          bevelSegments: 2, steps: 1, curveSegments: 4
+        });
+        geo.translate(0, 0, -depth/2);
+        return geo;
+      }
+
+      const gearMat = new THREE.MeshStandardMaterial({
+        color: 0x0A0A0A, metalness: 0.5, roughness: 0.45
+      });
+      const wireMat = new THREE.LineBasicMaterial({
+        color: 0xF4F1EA, transparent: true, opacity: 0.18
+      });
+
+      // Two interlocking gears
+      const t1 = 14, t2 = 10;
+      const r1o = 1.4, r1i = 1.05;
+      const r2o = 1.0, r2i = 0.7;
+      const pitch1 = (r1o + r1i) / 2;
+      const pitch2 = (r2o + r2i) / 2;
+      const centerDist = pitch1 + pitch2;
+
+      const geo1 = makeGear(t1, r1o, r1i, 0.28, 0.36);
+      const gear1 = new THREE.Mesh(geo1, gearMat);
+      gear1.position.set(-(centerDist/2), 0, 0);
+      scene.add(gear1);
+
+      const geo2 = makeGear(t2, r2o, r2i, 0.22, 0.36);
+      const gear2 = new THREE.Mesh(geo2, gearMat);
+      gear2.position.set(centerDist/2, 0, 0);
+      gear2.rotation.z = Math.PI / t2; // half-tooth offset for meshing
+      scene.add(gear2);
+
+      // Wireframe overlays
+      gear1.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo1), wireMat));
+      gear2.add(new THREE.LineSegments(new THREE.EdgesGeometry(geo2), wireMat));
+
+      // Axles
+      const axleGeo = new THREE.CylinderGeometry(0.09, 0.09, 0.6, 16);
+      const axle1 = new THREE.Mesh(axleGeo, gearMat);
+      axle1.rotation.x = Math.PI / 2;
+      axle1.position.copy(gear1.position);
+      scene.add(axle1);
+      const axle2 = new THREE.Mesh(axleGeo, gearMat);
+      axle2.rotation.x = Math.PI / 2;
+      axle2.position.copy(gear2.position);
+      scene.add(axle2);
+
+      // Base plate
+      const baseGeo = new THREE.BoxGeometry(5, 0.1, 2.8);
+      const baseMat = new THREE.MeshStandardMaterial({ color: 0x2A2A2A, metalness: 0.4, roughness: 0.75 });
+      const base = new THREE.Mesh(baseGeo, baseMat);
+      base.position.y = -1.0;
+      scene.add(base);
+
+      // Bolt heads on base (decoration)
+      const boltGeo = new THREE.CylinderGeometry(0.08, 0.08, 0.05, 6);
+      const boltMat = new THREE.MeshStandardMaterial({ color: 0x1A1A1A, metalness: 0.6, roughness: 0.4 });
+      [[-2.2, -0.9, 1.1], [2.2, -0.9, 1.1], [-2.2, -0.9, -1.1], [2.2, -0.9, -1.1]].forEach(p => {
+        const b = new THREE.Mesh(boltGeo, boltMat);
+        b.position.set(...p);
+        scene.add(b);
+      });
+
+      // Rotation: opposite directions, ratio t1/t2
+      const speed1 = 0.012;
+      const speed2 = -speed1 * (t1 / t2);
+
+      // Only render while the gear is actually on screen - this was the single
+      // biggest source of lag, since the old version rendered every frame forever,
+      // even scrolled off-screen or in a background tab.
+      let gearVisible = true;
+      const gearVisObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => { gearVisible = e.isIntersecting; });
+      }, { threshold: 0.05 });
+      gearVisObserver.observe(container);
+
+      function animate() {
+        requestAnimationFrame(animate);
+        if (!gearVisible) return;
+        gear1.rotation.z += speed1;
+        gear2.rotation.z += speed2;
+        controls.update();
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      const resizeObs = new ResizeObserver(() => {
+        const w = Math.max(1, container.clientWidth);
+        const h = Math.max(1, container.clientHeight);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      });
+      resizeObs.observe(container);
+    }
+  </script>
+</body>
+</html>
