@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title> Dennis Ungureanu — Portfolio</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com">
+
+</script><script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <!--<link rel="icon" type="image/png" href="icons/DUI.png">-->
 
   <link rel="icon" type="image/png" href="icons/favicon.ico">
@@ -533,19 +535,19 @@
         <div class="sheet-label mb-8">Measured outcomes</div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <div class="big-num text-5xl md:text-7xl" data-count="4">0</div>
+            <div class="big-num text-5xl md:text-7xl" data-count="6">0</div>
             <div class="sheet-label mt-3">Projects shipped</div>
           </div>
           <div>
-            <div class="big-num text-5xl md:text-7xl" data-count="10">0</div>
+            <div class="big-num text-5xl md:text-7xl" data-count="80">10</div>
             <div class="sheet-label mt-3">CAD hours logged</div>
           </div>
           <div>
-            <div class="big-num text-5xl md:text-7xl" data-count="3.15" data-decimal="2">0</div>
+            <div class="big-num text-5xl md:text-7xl" data-count="3.15" data-decimal="2">Hopefully 4.0 soon</div>
             <div class="sheet-label mt-3">GPA / 4.0</div>
           </div>
           <div>
-            <div class="big-num text-5xl md:text-7xl" data-count="3">0</div>
+            <div class="big-num text-5xl md:text-7xl" data-count="3">4 or 5 now pretty much</div>
             <div class="sheet-label mt-3">Tools in rotation</div>
           </div>
         </div>
@@ -555,7 +557,7 @@
         <div class="relative aspect-square border border-current overflow-hidden" style="background: var(--paper-2);">
           <div id="gearCanvas"></div>
           <div class="absolute top-3 left-3 sheet-label">FIG 02.1 / GEAR ASSEMBLY</div>
-          <div class="absolute bottom-3 right-3 sheet-label">DRAG TO ROTATE</div>
+          <div class="absolute bottom-3 right-3 sheet-label">DRAG TO ROTATE</div> <!-- imma keep this here even after i launch like itll be my hero like overlay but its gonna stay where it is, even though i didn't make ts.-->
           <div class="corner corner-tl"></div>
           <div class="corner corner-tr"></div>
           <div class="corner corner-bl"></div>
@@ -600,8 +602,8 @@
         <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
           <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">01</span>
           <div class="flex-1 min-w-0">
-            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Pneumatic Engine</h3>
-            <div class="project-meta sheet-label mt-2">ME 70 · Spring 2025 · SolidWorks · Lathe · Mill · ANSYS</div>
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Robot Arm</h3>
+            <div class="project-meta sheet-label mt-2">Personal · Ongoing · AutoCAD · Arduino · Inverse Kinematics</div>
           </div>
           <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
         </div>
@@ -611,19 +613,19 @@
         <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
           <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">02</span>
           <div class="flex-1 min-w-0">
-            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Cycling Power Meter</h3>
-            <div class="project-meta sheet-label mt-2">Personal · Ongoing · Arduino · Strain Gauges · PCB · FDM</div>
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">High Powered Rocket</h3>
+            <div class="project-meta sheet-label mt-2">Club & Personal · Summer 2026 · OpenRocket · Rocket Design · Electronics </div>
           </div>
           <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
         </div>
       </article>
-
+    <!--The rest should be like time track-->
       <article class="project-row group cursor-pointer py-7 md:py-9" data-project="3">
         <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
           <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">03</span>
           <div class="flex-1 min-w-0">
-            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Soft Robotic Gripper</h3>
-            <div class="project-meta sheet-label mt-2">Robotics Club · 2024 · Fusion 360 · Silicone Casting · Pneumatics</div>
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Time Tracker</h3>
+            <div class="project-meta sheet-label mt-2">Personal · Fall 2024 · MySQL · Python · Web Scraping · Data Cleaning</div>
           </div>
           <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
         </div>
@@ -633,8 +635,8 @@
         <div class="px-2 md:px-6 flex items-baseline gap-4 md:gap-8">
           <span class="font-mono text-xs md:text-sm shrink-0 w-6 md:w-8">04</span>
           <div class="flex-1 min-w-0">
-            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Wind Tunnel Balance</h3>
-            <div class="project-meta sheet-label mt-2">ME 80 · 2025 · Machining · DAQ · MATLAB · Calibration</div>
+            <h3 class="font-serif-d text-3xl md:text-5xl leading-[1.05] font-light">Web Newsletter</h3>
+            <div class="project-meta sheet-label mt-2">Personal · Fall 2023 · Python · JavaScript · Article Creation</div>
           </div>
           <span class="project-arrow font-mono text-2xl md:text-3xl shrink-0">→</span>
         </div>
@@ -643,128 +645,132 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="relative px-6 md:px-10 py-20 md:py-32">
-    <div class="grid grid-cols-12 gap-4 md:gap-6 mb-16 md:mb-20">
-      <div class="col-span-12 md:col-span-3 reveal">
-        <div class="sheet-label mb-3">04 / Capabilities</div>
+<section id="skills" class="relative px-6 md:px-10 py-20 md:py-32">
+  <div class="grid grid-cols-12 gap-4 md:gap-6 mb-16 md:mb-20">
+    <div class="col-span-12 md:col-span-3 reveal">
+      <div class="sheet-label mb-3">04 / Capabilities</div>
+    </div>
+    <div class="col-span-12 md:col-span-9 reveal reveal-d1">
+      <h2 class="font-serif-d font-light leading-[0.9] tracking-tight" style="font-size: clamp(48px, 8vw, 120px);">
+        The<br>
+        <span class="italic">toolkit.</span>
+      </h2>
+      <p class="mt-8 max-w-xl text-sm leading-relaxed text-[var(--graphite)]">
+        A working snapshot of where my skills sit today. Every category is something I've
+        used on a real project.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-12 gap-x-4 gap-y-12 md:gap-x-6 md:gap-y-16">
+    <!-- Programming / Electronics (First) -->
+    <div class="col-span-12 md:col-span-6 reveal">
+      <div class="sheet-label mb-6 flex items-center gap-3">
+        <span>Programming / Electronics</span>
+        <span class="flex-1 h-px bg-current opacity-20"></span>
+        <span class="opacity-50">A</span>
       </div>
-      <div class="col-span-12 md:col-span-9 reveal reveal-d1">
-        <h2 class="font-serif-d font-light leading-[0.9] tracking-tight" style="font-size: clamp(48px, 8vw, 120px);">
-          The<br>
-          <span class="italic">toolkit.</span>
-        </h2>
-        <p class="mt-8 max-w-xl text-sm leading-relaxed text-[var(--graphite)]">
-          A working snapshot of where my skills sit today. Every category is something I've
-          used on a real project — no resume padding.
-        </p>
+      <div class="space-y-7">
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>C / C++ (Arduino)</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Python</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Embeddeding / Soldering</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 35%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>HTML / CSS / JS</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+          <div class="skill-bar" style="--w: 40%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
       </div>
     </div>
 
-    <div class="grid grid-cols-12 gap-x-4 gap-y-12 md:gap-x-6 md:gap-y-16">
-      <div class="col-span-12 md:col-span-6 reveal">
-        <div class="sheet-label mb-6 flex items-center gap-3">
-          <span>CAD / Modeling</span>
-          <span class="flex-1 h-px bg-current opacity-20"></span>
-          <span class="opacity-50">A</span>
-        </div>
-        <div class="space-y-7">
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>SolidWorks</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
-            <div class="skill-bar" style="--w: 85%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>Fusion 360</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
-            <div class="skill-bar" style="--w: 80%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>AutoCAD</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>Onshape</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-        </div>
+    <!-- Simulation / Analysis (Second) -->
+    <div class="col-span-12 md:col-span-6 reveal reveal-d1">
+      <div class="sheet-label mb-6 flex items-center gap-3">
+        <span>Simulation / Analysis</span>
+        <span class="flex-1 h-px bg-current opacity-20"></span>
+        <span class="opacity-50">B</span>
       </div>
-
-      <div class="col-span-12 md:col-span-6 reveal reveal-d1">
-        <div class="sheet-label mb-6 flex items-center gap-3">
-          <span>Simulation / Analysis</span>
-          <span class="flex-1 h-px bg-current opacity-20"></span>
-          <span class="opacity-50">B</span>
+      <div class="space-y-7">
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Python (NumPy/SciPy)</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 50%"><div class="fill"></div><div class="dot"></div></div>
         </div>
-        <div class="space-y-7">
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>ANSYS Mechanical</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>SolidWorks Sim</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>MATLAB</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 70%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>Python (NumPy/SciPy)</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>MATLAB</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+          <div class="skill-bar" style="--w: 20%"><div class="fill"></div><div class="dot"></div></div>
         </div>
-      </div>
-
-      <div class="col-span-12 md:col-span-6 reveal">
-        <div class="sheet-label mb-6 flex items-center gap-3">
-          <span>Manufacturing</span>
-          <span class="flex-1 h-px bg-current opacity-20"></span>
-          <span class="opacity-50">C</span>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>SolidWorks Sim</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+          <div class="skill-bar" style="--w: 10%"><div class="fill"></div><div class="dot"></div></div>
         </div>
-        <div class="space-y-7">
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>FDM 3D Printing</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
-            <div class="skill-bar" style="--w: 90%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>SLA Printing</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>Manual Machining</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>Laser Cutting</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
-            <div class="skill-bar" style="--w: 85%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-span-12 md:col-span-6 reveal reveal-d1">
-        <div class="sheet-label mb-6 flex items-center gap-3">
-          <span>Programming / Electronics</span>
-          <span class="flex-1 h-px bg-current opacity-20"></span>
-          <span class="opacity-50">D</span>
-        </div>
-        <div class="space-y-7">
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>C / C++ (Arduino)</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>Python</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 60%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>Embedded / Soldering</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
-            <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-          <div>
-            <div class="flex justify-between mb-2 text-sm"><span>HTML / CSS / JS</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
-            <div class="skill-bar" style="--w: 40%"><div class="fill"></div><div class="dot"></div></div>
-          </div>
-        </div>
+        <!--<div>
+          <div class="flex justify-between mb-2 text-sm"><span>ANSYS Mechanical</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
+        </div>-->
       </div>
     </div>
+
+    <!-- CAD / Modeling (Third) -->
+    <div class="col-span-12 md:col-span-6 reveal">
+      <div class="sheet-label mb-6 flex items-center gap-3">
+        <span>CAD / Modeling</span>
+        <span class="flex-1 h-px bg-current opacity-20"></span>
+        <span class="opacity-50">C</span>
+      </div>
+      <div class="space-y-7">
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>AutoCAD</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 40%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>SolidWorks</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+          <div class="skill-bar" style="--w: 10%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <!--<div>
+          <div class="flex justify-between mb-2 text-sm"><span>Onshape</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Fusion 360</span><span class="font-mono text-xs opacity-60">Advanced</span></div>
+          <div class="skill-bar" style="--w: 80%"><div class="fill"></div><div class="dot"></div></div>
+        </div>-->
+      </div>
+    </div>
+
+    <!-- Manufacturing (Fourth) -->
+    <div class="col-span-12 md:col-span-6 reveal reveal-d1">
+      <div class="sheet-label mb-6 flex items-center gap-3">
+        <span>Manufacturing</span>
+        <span class="flex-1 h-px bg-current opacity-20"></span>
+        <span class="opacity-50">D</span>
+      </div>
+      <div class="space-y-7">
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Laser Cutting</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+          <div class="skill-bar" style="--w: 15%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>FDM 3D Printing</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+          <div class="skill-bar" style="--w: 10%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <!--<div>
+          <div class="flex justify-between mb-2 text-sm"><span>SLA Printing</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 65%"><div class="fill"></div><div class="dot"></div></div>
+        </div>
+        <div>
+          <div class="flex justify-between mb-2 text-sm"><span>Manual Machining</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
+          <div class="skill-bar" style="--w: 55%"><div class="fill"></div><div class="dot"></div></div>
+        </div>-->
+      </div>
+    </div>
+  </div>
 
     <div class="mt-20 md:mt-24 reveal">
       <div class="sheet-label mb-5">Also exploring</div>
@@ -795,61 +801,103 @@
         </h2>
         <p class="mt-8 max-w-xl text-sm leading-relaxed" style="color: rgba(244,241,234,0.7)">
           Looking for an intern, a research assistant, or a collaborator on a project?
-          I'm currently open to summer 2026 opportunities and student-team work.
+          I'm currently open to summer and fall 2026 opportunities and student-team work.
         </p>
       </div>
     </div>
-
+<!-- make sure the links open and open in a new tab-->
     <div class="grid grid-cols-12 gap-4 md:gap-6 mt-8 md:mt-12">
       <div class="col-span-12 md:col-span-5 reveal">
         <div class="sheet-label mb-6" style="color: rgba(244,241,234,0.5)">Direct</div>
         <div class="space-y-7">
-          <a href="mailto:elias.marsh@stanford.edu" class="block group">
+          <a   href="mailto:dennis.ungureanu@my.century.edu" target="_blank" rel="noopener noreferrer" class="block group">
             <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">Email</div>
-            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">elias.marsh@stanford.edu</div>
+            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">dennis.ungureanu@my.century.edu</div>
           </a>
-          <a href="#" class="block">
+          <a href="https://www.linkedin.com/in/dennisungur/" target="_blank" rel="noopener noreferrer" class="block">
             <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">LinkedIn</div>
-            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">/in/elias-marsh</div>
+            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">/in/dennisungur/</div>
           </a>
-          <a href="#" class="block">
+
+          <a href="https://github.com/Clancastle" target="_blank" rel="noopener noreferrer" class="block">
             <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">GitHub</div>
-            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">@elias-marsh</div>
+            <div class="font-serif-d text-2xl md:text-3xl ulink font-light">@Clancastle</div>
           </a>
-          <a href="#" class="block">
+<!--          <a href="#" class="block">
             <div class="sheet-label mb-1" style="color: rgba(244,241,234,0.5)">Newsletter</div>
             <div class="font-serif-d text-2xl md:text-3xl ulink font-light italic">The Tolerance</div>
-          </a>
+          </a>-->
         </div>
       </div>
 
       <div class="col-span-12 md:col-span-6 md:col-start-7 reveal reveal-d1">
         <div class="sheet-label mb-6" style="color: rgba(244,241,234,0.5)">Or leave a note</div>
+
+
+
         <form id="contactForm" class="space-y-7">
+
           <div>
-            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">Your name</label>
-            <input type="text" class="form-input" placeholder="Jane Engineer" required>
+            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">
+              Your name
+            </label>
+
+            <input
+              type="text"
+              name="from_name"
+              class="form-input"
+              placeholder="John Doe"
+              required>
           </div>
+
           <div>
-            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">Email</label>
-            <input type="email" class="form-input" placeholder="jane@org.com" required>
+            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">
+              Email
+            </label>
+
+            <input
+              type="email"
+              name="reply_to"
+              class="form-input"
+              placeholder="name@email.com"
+              required>
           </div>
+
           <div>
-            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">Message</label>
-            <textarea rows="3" class="form-input" placeholder="What are you working on?" required></textarea>
+            <label class="sheet-label block mb-2" style="color: rgba(244,241,234,0.5)">
+              Message
+            </label>
+
+            <textarea
+              rows="4"
+              name="message"
+              class="form-input"
+              placeholder="What are you working on?"
+              required></textarea>
           </div>
-          <button type="submit" class="flex items-center gap-3 font-mono text-xs uppercase tracking-wider border-b pb-2 hover:gap-5 transition-all" style="border-color: var(--paper);">
-            Send message <span>→</span>
+
+          <button
+            type="submit"
+            class="flex items-center gap-3 font-mono text-xs uppercase tracking-wider border-b pb-2 hover:gap-5 transition-all"
+            style="border-color: var(--paper);">
+
+            Send Message
+            <span>→</span>
+
           </button>
-        </form>
+
+  </form>
+
+
+
       </div>
     </div>
 
     <footer class="mt-24 md:mt-32 pt-8 border-t" style="border-color: rgba(244,241,234,0.2);">
       <div class="grid grid-cols-12 gap-4 text-xs font-mono uppercase tracking-wider" style="color: rgba(244,241,234,0.5)">
-        <div class="col-span-6 md:col-span-3">© 2026 Elias Marsh</div>
-        <div class="col-span-6 md:col-span-3">Stanford, CA</div>
-        <div class="col-span-6 md:col-span-3">Designed & built locally</div>
+        <div class="col-span-6 md:col-span-3">© 2026 Dennis Ungureanu</div>
+        <div class="col-span-6 md:col-span-3">Minneapolis, MN</div>
+        <div class="col-span-6 md:col-span-3">Built locally</div>
         <div class="col-span-6 md:col-span-3 md:text-right">v1.0 / Sheet 05 of 05</div>
       </div>
     </footer>
@@ -936,46 +984,42 @@
     const projects = {
       1: {
         num: '01',
-        title: 'Pneumatic Engine',
-        date: 'Spring 2025',
-        course: 'ME 70 — Mechanical Engineering Design',
-        tools: ['SolidWorks', 'Manual Lathe', 'Bridgeport Mill', 'ANSYS Static Structural', 'Telescope Gauges'],
+        title: 'Robot Arm',
+        date: 'Ongoing',
+        course: 'Personal project',
+        tools: ['AutoCAD', 'Arduino', 'Inverse Kinematics', 'ESP32',],
         image: 'https://picsum.photos/seed/pneumatic-engine-v2/1200/800.jpg',
-        summary: 'A single-cylinder pneumatic engine machined from aluminum and steel, capable of 820 RPM on 60 PSI compressed air.',
+        summary: 'A robot build from the fundamentals of electronics using ESP32 and Arduino, capable of moving things on a desk with a control panel.',
         body: [
-          'Designed and manufactured over six weeks as the capstone for ME 70. The engine uses a slide valve driven by a brass cam to time air intake and exhaust, with a flywheel turned on the manual lathe to smooth out the power stroke.',
-          'I handled all CAD modeling in SolidWorks, ran a static structural analysis on the crankshaft to verify a 4× safety factor at peak torque, and machined every component except the fasteners. Tolerances on the cylinder bore were held to ±0.001" using a telescope gauge and micrometer.',
-          'The engine ran successfully on first test, achieving 820 RPM sustained. Lessons learned: a tighter piston-to-cylinder clearance would have boosted efficiency, and a more elaborate port geometry could improve volumetric efficiency.'
+          'Still ongoing. Went from an idea in the head to execution by learning Arduino from videos and select books I found. Although not finished, I have made decent progress in theory and application, the only thing left is real application',
+
         ],
         specs: [
-          ['Displacement', '12.5 cc'],
-          ['Peak speed', '820 RPM @ 60 PSI'],
-          ['Material', '6061-T6 / 1018 steel'],
-          ['Weight', '640 g'],
-          ['Machining time', '38 hrs'],
-          ['Safety factor', '4.0× at peak torque']
+          ['Joints', '3'],
         ]
       },
       2: {
         num: '02',
-        title: 'Cycling Power Meter',
-        date: 'Ongoing — Personal',
-        course: 'Independent Project',
-        tools: ['Arduino Nano', 'Strain Gauges', 'Eagle PCB', 'Prusa MK4', 'ADS1256 ADC'],
+        title: 'High Powered Rocket(s)',
+        date: 'Summer 2026',
+        course: 'Club and Personal Project',
+        tools: ['OpenRocket', 'Rocket Design', 'Electronics', 'AIM USB Altimeter 4.0', 'HP-H195NT-10'],
         image: 'https://picsum.photos/seed/cycling-power-meter-v2/1200/800.jpg',
-        summary: 'A low-cost crank-based cycling power meter using strain gauges and a custom PCB, targeting ±2% accuracy at an $80 BOM.',
+        summary: 'A personal rocket made by myself, while in tandem helping a club rocket launch',
         body: [
-          'Commercial power meters cost $400–$1,200. I wanted to see how close I could get to the same measurement at a fraction of the cost, using hobbyist components and a 3D-printed housing.',
-          'The system uses a full Wheatstone bridge of 350Ω strain gauges bonded to the left crank arm, sampled at 200 Hz by an ADS1256 24-bit ADC and processed by an Arduino Nano. A BLE module transmits power, cadence, and torque efficiency to a head unit.',
-          'Currently calibrating against a static known-weight rig. Initial results show ±3.5% accuracy, with the dominant error source being temperature drift. Next steps include adding a thermistor for compensation and a PCB revision to reduce noise.'
+          '..',
         ],
         specs: [
-          ['Sample rate', '200 Hz'],
-          ['ADC', '24-bit ADS1256'],
-          ['Battery life', '~22 hrs'],
-          ['Current accuracy', '±3.5%'],
-          ['Target accuracy', '±2.0%'],
-          ['BOM cost', '$83.40']
+          ['Apogee', '2591.8 ft'],
+          ['Max Velocity', '636.4 ft/s (Mach 0.57)'],
+          ['Stability', '1.63 cal'],
+          ['Length', '109 cm'],
+          ['CG', '67.8 cm'],
+          ['CP', '80.2 cm'],
+          ['Stages', 'Dual Deploy']
+
+
+
         ]
       },
       3: {
@@ -1078,14 +1122,63 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closePanel(); });
 
     // Contact form
-    document.getElementById('contactForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button');
-      const orig = btn.innerHTML;
-      btn.innerHTML = 'Sent ✓ — I\'ll reply within 48 hrs';
-      btn.style.borderColor = 'var(--accent)';
-      setTimeout(() => { btn.innerHTML = orig; btn.style.borderColor = ''; e.target.reset(); }, 3000);
+document.addEventListener("DOMContentLoaded", function () {
+
+    emailjs.init({
+        publicKey: "5t6hoDX14LZmzofOe",
     });
+
+    document.getElementById("contactForm").addEventListener("submit", function(event){
+
+        event.preventDefault();
+
+        const button = this.querySelector("button");
+        const originalText = button.innerHTML;
+
+        button.disabled = true;
+        button.innerHTML = "Sending...";
+
+        emailjs.sendForm(
+            "service_h4n1dkj",
+            "template_1putpd4",
+            this
+        )
+
+        .then(() => {
+
+            button.innerHTML = "Sent ✓";
+            button.style.borderColor = "var(--accent)";
+
+            this.reset();
+
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+                button.style.borderColor = "";
+            },3000);
+
+        })
+
+        .catch((error)=>{
+
+            console.error("EmailJS Error:", error);
+
+            button.innerHTML = "Failed ✕";
+            button.style.borderColor = "red";
+
+            setTimeout(()=>{
+
+                button.innerHTML = originalText;
+                button.disabled = false;
+                button.style.borderColor = "";
+
+            },3000);
+
+        });
+
+    });
+
+});
   </script>
 
   <!-- Three.js gear assembly -->
@@ -1249,5 +1342,7 @@
       resizeObs.observe(container);
     }
   </script>
+<script src="script.js"></script>
+
 </body>
 </html>
