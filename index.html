@@ -556,7 +556,7 @@
       <div class="col-span-12 md:col-span-5 reveal reveal-d2">
         <div class="relative aspect-square border border-current overflow-hidden" style="background: var(--paper-2);">
           <div id="gearCanvas"></div>
-          <div class="absolute top-3 left-3 sheet-label">FIG 02.1 / GEAR ASSEMBLY</div>
+          <div class="absolute top-3 left-3 sheet-label">FIG 02.1 / INSPIRATION ASSEMBLY</div>
           <div class="absolute bottom-3 right-3 sheet-label">DRAG TO ROTATE</div> <!-- imma keep this here even after i launch like itll be my hero like overlay but its gonna stay where it is, even though i didn't make ts.-->
           <div class="corner corner-tl"></div>
           <div class="corner corner-tr"></div>
@@ -703,12 +703,12 @@
           <div class="skill-bar" style="--w: 50%"><div class="fill"></div><div class="dot"></div></div>
         </div>
         <div>
-          <div class="flex justify-between mb-2 text-sm"><span>MATLAB</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
+          <div class="flex justify-between mb-2 text-sm"><span>Matplotlib</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
           <div class="skill-bar" style="--w: 20%"><div class="fill"></div><div class="dot"></div></div>
         </div>
         <div>
           <div class="flex justify-between mb-2 text-sm"><span>SolidWorks Sim</span><span class="font-mono text-xs opacity-60">Beginner</span></div>
-          <div class="skill-bar" style="--w: 10%"><div class="fill"></div><div class="dot"></div></div>
+          <div class="skill-bar" style="--w: 5%"><div class="fill"></div><div class="dot"></div></div>
         </div>
         <!--<div>
           <div class="flex justify-between mb-2 text-sm"><span>ANSYS Mechanical</span><span class="font-mono text-xs opacity-60">Intermediate</span></div>
@@ -775,15 +775,15 @@
     <div class="mt-20 md:mt-24 reveal">
       <div class="sheet-label mb-5">Also exploring</div>
       <div class="flex flex-wrap gap-2">
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">ROS</span>
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">KiCad</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">NumPy</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Pandas</span>
         <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Blender</span>
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Grasshopper</span>
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">CFD</span>
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Topology Optimization</span>
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Sustainable Design</span>
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Soft Robotics</span>
-        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">DFAM</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">KiCad</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">DaVinci Resolve</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Onshape</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">TinkerCAD</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">Matplotlib</span>
+        <span class="px-4 py-2 border border-current rounded-full text-xs font-mono">PyTorch</span>
       </div>
     </div>
   </section>
@@ -898,7 +898,7 @@
         <div class="col-span-6 md:col-span-3">© 2026 Dennis Ungureanu</div>
         <div class="col-span-6 md:col-span-3">Minneapolis, MN</div>
         <div class="col-span-6 md:col-span-3">Built locally</div>
-        <div class="col-span-6 md:col-span-3 md:text-right">v1.0 / Sheet 05 of 05</div>
+        <div class="col-span-6 md:col-span-3 md:text-right">v1.1 / Sheet 05 of 05</div>
       </div>
     </footer>
   </section>
@@ -981,21 +981,24 @@
     );
 
     // Projects data
-    const projects = {
+   const projects = {
       1: {
         num: '01',
         title: 'Robot Arm',
-        date: 'Ongoing',
+        date: 'PLACEHOLDER IMAGE',
         course: 'Personal project',
-        tools: ['AutoCAD', 'Arduino', 'Inverse Kinematics', 'ESP32',],
-        image: 'https://picsum.photos/seed/pneumatic-engine-v2/1200/800.jpg',
+        tools: ['AutoCAD', 'Arduino', 'ESP32', 'Inverse Kinematics'],
+        // image: 'https://picsum.photos/seed/pneumatic-engine-v2/1200/800.jpg',//
+        image: './Prospect.png',
         summary: 'A robot build from the fundamentals of electronics using ESP32 and Arduino, capable of moving things on a desk with a control panel.',
         body: [
-          'Still ongoing. Went from an idea in the head to execution by learning Arduino from videos and select books I found. Although not finished, I have made decent progress in theory and application, the only thing left is real application',
-
+      'Started from an idea and worked toward execution by learning Arduino from videos and books. Although still ongoing, the remaining work is just physical assembly and calibration.',
+      '',
         ],
         specs: [
-          ['Joints', '3'],
+          ['Joints', '3 (planned)'],
+          ['Controller', 'ESP32 + Arduino'],
+          ['Status', 'In progress'],
         ]
       },
       2: {
@@ -1003,12 +1006,16 @@
         title: 'High Powered Rocket(s)',
         date: 'Summer 2026',
         course: 'Club and Personal Project',
-        tools: ['OpenRocket', 'Rocket Design', 'Electronics', 'AIM USB Altimeter 4.0', 'HP-H195NT-10'],
-        image: 'https://picsum.photos/seed/cycling-power-meter-v2/1200/800.jpg',
-        summary: 'A personal rocket made by myself, while in tandem helping a club rocket launch',
+        tools: ['OpenRocket', 'AIM USB Altimeter 4.0', 'HP-H195NT-10', 'Dual Deploy'],
+        //image: 'https://picsum.photos/seed/cycling-power-meter-v2/1200/800.jpg',
+        image: './InFlight.jpeg',
+
+        summary: 'A personal rocket built and launched solo for Tripoli L1 certification, alongside contributing to a club rocket launch in the same season.',
         body: [
-          '..',
-        ],
+      'Designed the airframe, dry fit and put everything together to run simulations in OpenRocket before committing to any materials. The dual-deploy recovery system was one of the most challenging parts since a single deploy requires minimal materials while a dual deploy needs additional materials and precise programming to prevent unfortunate safety incidents and make sure maximum apogee is achieved.',
+      'The personal rocket hit 2,591.8 ft apogee at Mach 0.57, with a stability of 1.63 calibers. Before launching the rocket, doubts were had since 2,500 ft is not a small height, but once the simulation matched the launch, dopamine was released en masse due to this achievement.',
+      '',
+    ],
         specs: [
           ['Apogee', '2591.8 ft'],
           ['Max Velocity', '636.4 ft/s (Mach 0.57)'],
@@ -1016,55 +1023,54 @@
           ['Length', '109 cm'],
           ['CG', '67.8 cm'],
           ['CP', '80.2 cm'],
-          ['Stages', 'Dual Deploy']
-
-
+          ['Recovery', 'Dual Deploy']
 
         ]
       },
       3: {
         num: '03',
-        title: 'Soft Robotic Gripper',
-        date: 'Winter 2024–25',
-        course: 'Stanford Robotics Club',
-        tools: ['Fusion 360', 'Smooth-On Ecoflex 00-50', 'Pneumatics', 'Arduino', 'PLA Molds'],
-        image: 'https://picsum.photos/seed/soft-robotic-gripper-v2/1200/800.jpg',
-        summary: 'A three-fingered pneumatic soft gripper capable of picking up fragile and irregularly shaped objects, cast entirely in silicone.',
+        title: 'Time Tracker',
+        date: 'Fall 2024',
+        course: 'Personal Project',
+        tools: ['MySQL', 'Python', 'Matplotlib', 'Third-party activity logger'],
+        //image: 'https://picsum.photos/seed/time-tracker-v1/1200/800.jpg',
+        image: './SQL.png',
+        summary: 'A personal data pipeline to log time allocation across activities and find correlations between how I spend my time and how productive I actually am.',
         body: [
-          'Designed for a club challenge to pick up a raw egg without breaking it. The gripper uses fiber-reinforced pneumatic chambers that bend when pressurized, conforming to the shape of whatever they grasp.',
-          'I designed the molds in Fusion 360, printed them in PLA, and cast the fingers in Ecoflex 00-50 with embedded helical Kevlar thread as reinforcement to prevent radial ballooning. The full gripper assembles in under two minutes and runs off a small 12V compressor.',
-          'Successfully picked up an egg, a screwdriver, a tennis ball, and a crumpled piece of paper. The team is now exploring closed-loop pressure control to allow gentler grasping of more fragile items.'
-        ],
+              'Set up a MySQL server locally since I didn\'t want to use a database file and used a third-party activity tracking software to automatically log computer usage into the database. The goal was to collect enough data over time to find patterns between time allocation and productivity.',
+              'Wrote Python scripts to transfer and store the data, then used Matplotlib to visualize time usage across categories in my browser. The easiest categories to understand are just plain apps, that usually are used for a singular purpose. For that reason I focused on understanding browser usage to get meaningful results. Across day to day time spans, results did end up showing, without a major need to do complex data analysis on it.',
+              'The most useful thing I took from it wasn\'t the data itself. It was understanding how a data pipeline actually fits together. With the emphasis every major institution puts on data, I found why ingestion, storage, cleaning, and data visualization are important as they are. As a result, in my daily life I try to gather data to find common patterns to remove disadvantageous habits from my life. ',
+          'A secondary use, I found for the MySQL server already locally set up, was to have it function as extra storage. Since MySQL functions by compressing data into binary and removing some imperceptible information, it served as a very useful secondary storage where I could set up a data scraper and scrape information and store everything in the server. It ended up to be one of the most used \'project\' that I have made so far.',
+
+            ],
         specs: [
-          ['Fingers', '3'],
-          ['Material', 'Ecoflex 00-50'],
-          ['Operating pressure', '12 PSI'],
-          ['Payload', 'up to 400 g'],
-          ['Cycle time', '~1.2 s'],
-          ['Reinforcement', 'Helical Kevlar thread']
-        ]
+              ['Database', 'MySQL (local server)'],
+              ['Ingestion', 'Python scripts'],
+              ['Visualization', 'Matplotlib'],
+              ['Status', 'Complete (prototype)'],
+            ]
       },
       4: {
         num: '04',
-        title: 'Wind Tunnel Balance',
-        date: 'Spring 2025',
-        course: 'ME 80 — Experimental Mechanics',
-        tools: ['Bridgeport Mill', 'NI DAQ', 'MATLAB', 'Strain Gauges', 'Precision Weights'],
-        image: 'https://picsum.photos/seed/wind-tunnel-balance-v2/1200/800.jpg',
-        summary: 'A custom three-component force balance for a low-speed wind tunnel, capable of measuring lift, drag, and pitching moment simultaneously.',
+        title: 'Web Newsletter',
+        date: 'Fall 2023',
+        course: 'Personal Project',
+        tools: ['Python', 'Flask', 'HTML/CSS', 'JavaScript', 'SQLite'],
+        //image: 'https://picsum.photos/seed/newsletter-v1/1200/800.jpg',
+        image: './Newsletter.png',
+        summary: 'A full-stack newsletter platform built from scratch — user registration, email validation, secure database storage through SQLite,while having a working frontend.',
         body: [
-          'For our ME 80 final project, my team of three was tasked with measuring aerodynamic forces on an airfoil at varying angles of attack. The department\'s existing balance had broken strain gauges and a calibration that no one trusted.',
-          'I led the mechanical design: a sting-mounted balance using two pairs of strain gauges in bending to resolve normal force and axial force, with a moment arm to compute pitching moment. The flexural elements were machined from 7075 aluminum and designed for a 5 lbf full-scale load.',
-          'After machining, I built a calibration rig using precision weights and a protractor, taking 36 data points across all three axes. MATLAB regression showed linear behavior with R² > 0.997 on all channels. The balance is now in use by the department for undergraduate labs.'
+          'Built because I wanted to build a newsletter following on my own terms while gaining experience coding and building projects while after setting everything up, having creative ideas for articles. Due to this, I understand how web applications actually work, not just the bare minimum.',
+          'Implemented parameterized queries to prevent SQL injection and basic protection. Just enough to prevent anything from breaking due to amateur hackers or unintentional key clicks. ',
+          'The newsletter itself I launched on a Netlify site, but due to the lack of desire to keep the newsletter going I shelved it. Although not in service, the project taught me more about frontend/backend development and security fields than anything I\'d read. Since I built something that stores real user data, I had to follow regulations and learn more about how to store and secure this data.',
         ],
         specs: [
-          ['Channels', '3 (Lift, Drag, Pitch)'],
-          ['Full-scale load', '5 lbf'],
-          ['Accuracy', '±0.5% FS'],
-          ['Calibration', '36-point linear'],
-          ['Material', '7075-T6 Aluminum'],
-          ['R² (all channels)', '> 0.997']
-        ]
+              ['Backend', 'Python / Flask'],
+              ['Database', 'SQLite'],
+              ['Frontend', 'HTML / CSS / JS'],
+              ['Security', 'Parameterized queries and input validation'],
+              ['Status', 'Complete'],
+            ]
       }
     };
 
